@@ -1,0 +1,288 @@
+/* RooftopLake — lake explainer. Deep Water tokens only (plus the site's shared control style). Classes prefixed lx-. */
+.lx {
+  --lx-mid: color-mix(in srgb, var(--teal) 62%, var(--teal-soft));
+  --lx-ctl-bg: rgba(6,22,29,.55);
+  --lx-ctl-line: rgba(237,246,244,.18);
+  --lx-ctl-ink: #D5E4E3;
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.5;
+  max-width: 1120px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+.lx *, .lx *::before, .lx *::after { box-sizing: border-box; }
+.lx [hidden] { display: none !important; }
+:where(.lx) :where(p, h3, h4, ul, ol) { margin: 0; }
+:where(.lx) button {
+  font: inherit; color: inherit; cursor: pointer; background: none; border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.lx button:focus-visible { outline: 2.5px solid var(--brass); outline-offset: 3px; }
+
+/* ---------- controls (shared site style) ---------- */
+.lx-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.lx-chips { display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 420px; }
+.lx-chip, .lx-seg {
+  font-family: var(--font-body); font-weight: 500; font-size: 15px;
+  min-height: 44px; border-radius: 999px;
+  border: 1px solid var(--lx-ctl-line); background: var(--lx-ctl-bg); color: var(--lx-ctl-ink);
+}
+.lx-chip { padding: 0 18px; transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+.lx-chip:hover { border-color: var(--teal); }
+.lx-chip[aria-pressed="true"] { background: var(--teal); color: var(--on-teal); border-color: var(--teal); }
+.lx-stores-ctl { display: flex; align-items: center; gap: 10px; }
+.lx-label { font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.lx-seg { display: inline-flex; padding: 0; overflow: hidden; }
+.lx-num {
+  width: 44px; min-height: 42px; border-radius: 999px; font-weight: 500; font-size: 15px; color: var(--lx-ctl-ink);
+  font-family: var(--font-mono); transition: background .3s var(--ease), color .3s var(--ease);
+}
+.lx-num[aria-pressed="true"] { background: var(--teal); color: var(--on-teal); }
+.lx-switch { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-width: 300px; }
+.lx-thumb {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 50%; border-radius: 999px; background: var(--teal);
+  transition: transform .6s var(--ease);
+}
+.lx[data-mode="lake"] .lx-thumb { transform: translateX(100%); }
+.lx-sw {
+  position: relative; z-index: 1; min-height: 42px; padding: 0 18px; border-radius: 999px;
+  font-weight: 500; font-size: 15px; color: var(--lx-ctl-ink); transition: color .4s var(--ease);
+}
+.lx-sw[aria-pressed="true"] { color: var(--on-teal); }
+
+.lx-q {
+  margin: 28px 0 0; min-height: 2.2em; font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(26px, 3vw, 38px); line-height: 1.1; letter-spacing: -.015em;
+}
+
+/* ---------- scene: fixed heights per breakpoint, so nothing below moves when the view changes ---------- */
+.lx-scene { position: relative; margin-top: 16px; display: grid; grid-template-columns: minmax(0, 1fr); }
+.lx-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.lx-shore { position: relative; z-index: 2; display: flex; justify-content: space-around; gap: 8px; }
+.lx-col { flex: 1 1 0; min-width: 0; max-width: 200px; display: flex; flex-direction: column; align-items: center; }
+.lx-tile { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.lx-roof {
+  width: 72px; height: 44px; color: var(--teal); overflow: visible;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--teal) 30%, transparent));
+  transition: filter 1s var(--ease);
+}
+.lx[data-mode="lake"] .lx-roof { filter: drop-shadow(0 0 12px color-mix(in srgb, var(--teal) 60%, transparent)); }
+.lx-ic-sign { fill: var(--brass); }
+.lx-ic-signtext { stroke: var(--on-teal); }
+.lx-ic-glass { fill: color-mix(in srgb, var(--teal) 22%, transparent); stroke: currentColor; stroke-width: 1.4; }
+.lx-tile-name { font-size: 14px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
+
+/* the disagreeing numbers: always room for four systems, whatever the question */
+.lx-stack {
+  width: 100%; height: calc(4 * 46px + 14px); padding-top: 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px;
+}
+.lx-n {
+  position: relative; left: calc(var(--dx) * 12px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 44px; min-width: 44px; padding: 0 8px; border-radius: 12px; color: var(--ink);
+  transition: opacity .5s var(--ease) calc(var(--i) * 30ms), transform .55s var(--ease) calc(var(--i) * 30ms), color .2s;
+  animation: lx-bob 3.6s ease-in-out infinite; animation-delay: calc(var(--i) * -.53s);
+}
+.lx-n-sys, .lx-n-ab { font-size: 11.5px; color: var(--ink-2); line-height: 1.2; white-space: nowrap; }
+.lx-n-ab { display: none; }
+.lx-n-v {
+  font-family: var(--font-mono); font-size: 23px; font-weight: 500; line-height: 1.15;
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.lx-n:hover { color: var(--brass); }
+.lx-n[aria-pressed="true"] { color: var(--brass); text-shadow: 0 0 16px color-mix(in srgb, var(--brass) 60%, transparent); }
+.lx-n[aria-pressed="true"] .lx-n-sys, .lx-n[aria-pressed="true"] .lx-n-ab { color: var(--brass); }
+@keyframes lx-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+.lx[data-mode="lake"] .lx-n {
+  opacity: 0; transform: translateY(12px) scale(.35); visibility: hidden;
+  transition: opacity .3s ease-in calc(var(--i) * 35ms), transform .4s ease-in calc(var(--i) * 35ms), visibility 0s linear 1s;
+}
+
+/* the lake: always there. Dry and faintly labelled today; fills top to bottom with the lake */
+.lx-pool {
+  position: relative; z-index: 1; display: grid; margin-top: 4px; border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--teal) 14%, transparent);
+  transition: box-shadow 1.2s var(--ease) .5s, border-color 1.2s var(--ease) .5s;
+}
+.lx[data-mode="lake"] .lx-pool { box-shadow: var(--glow); border-color: color-mix(in srgb, var(--teal) 40%, transparent); }
+.lx-band {
+  --d: 0s;
+  display: flex; align-items: center; gap: 14px; min-height: 58px; padding: 8px 20px; text-align: left;
+  background-color: color-mix(in srgb, var(--teal-soft) var(--dry, 40%), var(--paper)); color: var(--ink-2);
+  transition: background-color .9s var(--ease) var(--d), color .6s var(--ease) var(--d), box-shadow .3s var(--ease);
+}
+.lx-band-2 { --dry: 28%; }
+.lx-band-3 { --dry: 16%; }
+.lx-band-n, .lx-band-t { opacity: .4; transition: opacity .5s var(--ease); }
+.lx[data-mode="lake"] .lx-band-1 { --d: .55s; background-color: var(--teal-2); color: var(--on-teal); }
+.lx[data-mode="lake"] .lx-band-2 { --d: .7s; background-color: var(--lx-mid); color: var(--on-teal); }
+.lx[data-mode="lake"] .lx-band-3 { --d: .85s; background-color: var(--teal-soft); color: var(--ink); }
+.lx[data-mode="lake"] .lx-band-n, .lx[data-mode="lake"] .lx-band-t { opacity: 1; transition: opacity .7s var(--ease) var(--d); }
+.lx-band-n {
+  flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600; border: 1.5px solid currentColor;
+}
+.lx-band-t { display: grid; gap: 1px; min-width: 0; }
+.lx-band-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; line-height: 1.2; }
+.lx-band-swap { display: grid; }
+.lx-band-sub, .lx-band-ex { grid-area: 1 / 1; font-size: 13.5px; transition: opacity .35s var(--ease), transform .35s var(--ease); }
+.lx-band-sub { opacity: .8; }
+.lx-band-ex { font-family: var(--font-mono); font-size: 13px; font-weight: 500; opacity: 0; transform: translateY(4px); }
+.lx-band.is-open .lx-band-sub { opacity: 0; transform: translateY(-4px); }
+.lx-band.is-open .lx-band-ex { opacity: 1; transform: none; }
+.lx-band[aria-pressed="true"] { box-shadow: inset 4px 0 0 var(--brass); }
+.lx-band[aria-pressed="true"] .lx-band-n { background: var(--brass); border-color: var(--brass); color: var(--on-teal); }
+.lx-band:focus-visible { outline-offset: -4px; }
+
+/* one slot: the argument today, the one answer with the lake, the trail on request.
+   All three share one grid cell, so the slot is always as tall as the tallest and never jumps. */
+.lx-slot { position: relative; z-index: 2; display: grid; margin-top: 26px; text-align: center; }
+.lx-verdict, .lx-ans, .lx-more { grid-area: 1 / 1; }
+.lx-verdict, .lx-ans { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.lx-verdict { transition: opacity .45s var(--ease) .1s, transform .45s var(--ease) .1s, visibility 0s .1s; }
+.lx[data-mode="lake"] .lx-verdict {
+  opacity: 0; transform: translateY(-10px); visibility: hidden;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s .3s;
+}
+.lx-arriving[data-mode="lake"] .lx-verdict {
+  transition: opacity .4s var(--ease) .85s, transform .4s var(--ease) .85s, visibility 0s 1.25s;
+}
+.lx-tally { font-family: var(--font-mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--bad); }
+.lx-big { margin-top: 4px; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 4vw, 46px); line-height: 1.1; }
+.lx-range { margin-top: 8px; font-size: 16px; color: var(--ink-2); }
+.lx-range b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); }
+.lx-why { margin-top: 12px; max-width: 52ch; min-height: 4.6em; font-size: 15px; color: var(--ink-2); }
+.lx-why.is-on { color: var(--ink); }
+.lx-why b { color: var(--brass); font-weight: 600; }
+
+.lx-ans {
+  opacity: 0; transform: translateY(18px) scale(.97); filter: blur(8px); visibility: hidden;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), filter .3s var(--ease), visibility 0s .3s;
+}
+.lx[data-mode="lake"] .lx-ans {
+  opacity: 1; transform: none; filter: none; visibility: visible;
+  transition: opacity .35s var(--ease), transform .35s var(--ease), filter .35s var(--ease), visibility 0s;
+}
+.lx-arriving[data-mode="lake"] .lx-ans {
+  transition: opacity .7s var(--ease) 1s, transform .9s var(--ease) 1s, filter .7s var(--ease) 1s, visibility 0s 1s;
+}
+.lx[data-mode="lake"][data-more="true"] .lx-ans {
+  opacity: 0; transform: none; filter: none; visibility: hidden;
+  transition: opacity .25s var(--ease), visibility 0s .25s;
+}
+.lx-ans-k { font-size: 12.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+.lx-ans-num {
+  margin-top: 2px; font-family: var(--font-mono); font-weight: 500; line-height: 1;
+  font-size: clamp(64px, 10vw, 120px); letter-spacing: -.04em; font-variant-numeric: tabular-nums; color: var(--teal-2);
+  white-space: nowrap;
+  text-shadow: 0 0 28px color-mix(in srgb, var(--teal) 55%, transparent), 0 0 90px color-mix(in srgb, var(--teal) 30%, transparent);
+}
+.lx-ans-u { margin-top: 10px; font-size: 16px; color: var(--ink-2); }
+.lx-badge {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 6px 14px 6px 10px;
+  border-radius: 999px; background: var(--good-soft); color: var(--good); font-size: 14px; font-weight: 600;
+}
+.lx-badge svg { width: 16px; height: 16px; }
+.lx-more-btn, .lx-back {
+  margin-top: 6px; min-height: 44px; padding: 0 12px; font-size: 14px; color: var(--teal);
+  text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: color-mix(in srgb, var(--teal) 45%, transparent);
+}
+
+.lx-more {
+  display: grid; grid-template-columns: 1fr 1.3fr; align-content: center; gap: 10px 40px;
+  width: 100%; max-width: 760px; margin: 0 auto; text-align: left;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s .25s;
+}
+.lx[data-mode="lake"][data-more="true"] .lx-more {
+  opacity: 1; visibility: visible; transform: none;
+  transition: opacity .4s var(--ease) .1s, transform .4s var(--ease) .1s, visibility 0s;
+}
+.lx-back { grid-column: 1 / -1; justify-self: center; margin-top: 0; }
+.lx-more-k { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
+.lx-per { list-style: none; padding: 0; }
+.lx-per li {
+  display: flex; justify-content: space-between; gap: 12px; padding: 4px 0;
+  border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-2);
+}
+.lx-per b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); }
+.lx-trail { list-style: none; padding: 0; }
+.lx-trail li { position: relative; padding: 0 0 8px 22px; font-size: 13.5px; color: var(--ink-2); line-height: 1.4; }
+.lx-trail li::before {
+  content: ""; position: absolute; left: 4px; top: 5px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal-soft); border: 1.5px solid var(--teal);
+}
+.lx-trail li::after { content: ""; position: absolute; left: 8px; top: 15px; bottom: 0; width: 1.5px; background: var(--line); }
+.lx-trail li.is-end { padding-bottom: 0; font-family: var(--font-mono); font-weight: 600; color: var(--teal-2); }
+.lx-trail li.is-end::before { background: var(--brass); border-color: var(--brass); }
+.lx-trail li.is-end::after { display: none; }
+
+.lx-note {
+  margin: 26px auto 0; max-width: 46ch; min-height: 4.2em; text-align: center;
+  font-family: var(--font-display); font-size: clamp(18px, 2vw, 22px); line-height: 1.4; color: var(--ink);
+}
+.lx-caption { margin-top: 8px; text-align: center; font-size: 12.5px; color: var(--ink-2); }
+.lx-sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- wide: the answer sits beside the lake, so question, stores, lake and answer share one screen ---------- */
+@media (min-width: 900px) {
+  .lx-scene { grid-template-columns: minmax(0, 1fr) 360px; column-gap: 44px; }
+  .lx-shore { grid-column: 1; grid-row: 1; }
+  .lx-pool { grid-column: 1; grid-row: 2; }
+  .lx-slot { grid-column: 2; grid-row: 1 / 3; margin-top: 0; align-self: end; }
+  .lx-big { font-size: 38px; }
+  .lx-why { min-height: 6em; }
+  .lx-ans-num { font-size: 74px; }
+  .lx-more { grid-template-columns: 1fr; gap: 10px; }
+  .lx-per { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
+  .lx-note { margin-top: 22px; min-height: 2.8em; max-width: 70ch; }
+}
+@media (min-width: 1000px) { .lx-q { min-height: 1.1em; } }
+
+/* ---------- phone: its own composition ---------- */
+@media (max-width: 640px) {
+  .lx-controls { gap: 10px; }
+  .lx-chips { display: grid; grid-template-columns: 1fr 1fr; flex-basis: 100%; }
+  .lx-chip { padding: 0 10px; }
+  .lx-stores-ctl { flex: 1 1 100%; justify-content: space-between; }
+  .lx-switch { flex: 1 1 100%; min-width: 0; }
+  .lx-q { margin-top: 24px; font-size: 26px; }
+  .lx-scene { margin-top: 12px; }
+  .lx-shore { gap: 2px; justify-content: space-between; }
+  .lx-roof { width: 54px; height: 33px; }
+  .lx-tile-name { font-size: 11.5px; }
+  .lx-stack { height: calc(4 * 44px + 8px); padding-top: 6px; gap: 0; }
+  .lx-n { left: calc(var(--dx) * 3px); min-height: 44px; padding: 0 2px; }
+  .lx-n-sys { display: none; }
+  .lx-n-ab { display: block; font-size: 10.5px; letter-spacing: .02em; }
+  .lx-n-v { font-size: 15px; letter-spacing: -.03em; }
+  .lx-band { min-height: 56px; padding: 8px 14px; gap: 12px; }
+  .lx-band-n { width: 26px; height: 26px; font-size: 12px; }
+  .lx-band-title { font-size: 17px; }
+  .lx-band-sub { font-size: 12.5px; }
+  .lx-band-ex { font-size: 11.5px; line-height: 1.3; }
+  .lx-band-swap { min-height: 30px; } /* room for a two-line example, so the lake keeps its height */
+  .lx-slot { margin-top: 22px; min-height: 340px; } /* fits the tallest state: 5 stores, trail open */
+  .lx-big { font-size: 32px; }
+  .lx-range { font-size: 15px; }
+  .lx-why { font-size: 14.5px; min-height: 6.2em; }
+  .lx-ans-num { font-size: min(17vw, 72px); }
+  .lx-ans-u { font-size: 15px; }
+  .lx-more { grid-template-columns: 1fr; gap: 8px; }
+  .lx-per { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .lx-per li { font-size: 13px; }
+  .lx-trail li { font-size: 13px; padding-bottom: 6px; }
+  .lx-note { font-size: 18px; }
+}
+
+/* ---------- reduced motion: same content, no movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lx *, .lx *::before, .lx *::after { animation: none !important; transition: none !important; }
+}
+.lx-still *, .lx-still *::before, .lx-still *::after { animation: none !important; transition: none !important; }

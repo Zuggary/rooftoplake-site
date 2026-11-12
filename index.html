@@ -3,38 +3,270 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RooftopLake — one source of truth for dealer groups</title>
-<meta name="description" content="RooftopLake is a dealer-owned data lakehouse for multi-rooftop dealer groups. Coming soon.">
-<style>
-  :root { --bg:#f7f8fa; --fg:#14171c; --muted:#5b6270; --accent:#1d6fe0; --card:#ffffff; --line:#e3e6ec; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#0f1216; --fg:#eef1f5; --muted:#9aa3b2; --accent:#5a9bff; --card:#171b21; --line:#262c35; } }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; background:var(--bg); color:var(--fg); line-height:1.6; }
-  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; }
-  .mark { font-weight:600; letter-spacing:-0.01em; font-size:20px; }
-  .mark span { color: var(--accent); }
-  h1 { font-size: clamp(32px, 6vw, 48px); line-height:1.1; letter-spacing:-0.02em; margin: 48px 0 16px; }
-  p.lead { font-size: 19px; color: var(--muted); margin: 0 0 40px; }
-  ul { list-style:none; padding:0; margin:0 0 40px; display:grid; gap:12px; }
-  li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
-  li b { display:block; }
-  li small { color: var(--muted); font-size: 15px; }
-  a.cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:12px 20px; border-radius:10px; font-weight:500; }
-  footer { margin-top:64px; color:var(--muted); font-size:14px; }
-</style>
+<title>RooftopLake — agents do the work, your people decide</title>
+<meta name="description" content="RooftopLake puts every store's data in one lake you own, opens one secure door to it for any AI assistant, and helps your dealer group build, test and roll out its own apps and agents.">
+<link rel="canonical" href="https://rooftoplake.com/">
+<meta name="theme-color" content="#05131A">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rooftoplake.com/">
+<meta property="og:title" content="RooftopLake — agents do the work. Your people decide.">
+<meta property="og:description" content="One lake you own. One secure door. Starter agents on day one. A factory to build the rest. For dealer groups.">
+<meta property="og:image" content="https://rooftoplake.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css?v=1794466640">
+<link rel="stylesheet" href="css/scene.css?v=1794466640">
+<link rel="stylesheet" href="css/site.css?v=1794466640">
+<link rel="stylesheet" href="css/lane.css?v=1794466640">
+<link rel="stylesheet" href="css/explainer.css?v=1794466640">
+<link rel="stylesheet" href="css/demo.css?v=1794466640">
+<link rel="stylesheet" href="css/lifecycle.css?v=1794466640">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"RooftopLake","url":"https://rooftoplake.com/","email":"zach@rooftoplake.com","description":"A dealer-owned data lake, a secure door for AI assistants, and an agent factory for dealer groups."}</script>
 </head>
 <body>
-<main>
-  <div class="mark">Rooftop<span>Lake</span></div>
-  <h1>One source of truth for your dealer group.</h1>
-  <p class="lead">Every store, every system, one set of numbers you can trust, in a data lakehouse you own.</p>
-  <ul>
-    <li><b>One number, every store</b><small>Governed definitions of leads, units and gross, so dashboards stop arguing.</small></li>
-    <li><b>Your data, your copy</b><small>A dealer-owned lakehouse that keeps working when a vendor goes down.</small></li>
-    <li><b>New stores in days</b><small>Bring acquired rooftops onto one view fast, whatever DMS they run.</small></li>
-  </ul>
-  <a class="cta" href="mailto:zach@rooftoplake.com?subject=RooftopLake">Talk to us</a>
-  <footer>Coming soon · zach@rooftoplake.com</footer>
+<a class="skip" href="#main">Skip to content</a>
+<div id="lake-scene" aria-hidden="true" data-strata="0.42,0.455,0.49"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 32 32"><path d="M3 9.500h20" fill="none" stroke="var(--ink)" stroke-width="2.400" stroke-linecap="round"/><path d="M5.500 9.500V19M21 9.500V19M5.500 19H21M10.700 9.500V19M15.900 9.500V19" fill="none" stroke="var(--ink)" stroke-width="1.700" stroke-linecap="round"/><path d="M27 4.500V19" fill="none" stroke="var(--ink)" stroke-width="1.700" stroke-linecap="round"/><rect x="24.600" y="3" width="4.800" height="5" rx="1" fill="var(--brass)"/><path d="M3 24c3-1.800 6-1.800 9 0s6 1.800 9 0 6-1.800 8 0M7 29c2.300-1.300 4.700-1.300 7 0s4.700 1.300 7 0" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="RooftopLake home"><svg aria-hidden="true"><use href="#i-mark"/></svg><span>Rooftop<b>Lake</b></span></a>
+    <nav aria-label="Sections">
+      <a href="#problem">The problem</a>
+      <a href="#idea">The idea</a>
+      <a href="#lake">The lake</a>
+            <a href="#starters">Starters</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="top" data-depth-label="Surface">
+  <div class="wrap">
+    <div class="hero-top">
+    <div class="badge rv"><i></i>Pre-launch · now choosing our first design-partner groups</div>
+    <h1 class="rv" style="--i:1">Agents do the work. <em>Your people decide.</em></h1>
+    </div>
+    <div class="hero-bottom">
+    <p class="lead rv" style="--i:2">RooftopLake gives your dealer group its own AI team for the screen work, built on one lake of data that you own.</p>
+    <div class="cta-row rv" style="--i:3">
+      <a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a>
+      <a class="btn btn-ghost" href="#idea">See the idea <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    
+    </div>
+  </div>
+
+  <a class="dive" href="#problem" aria-label="Scroll down to dive in"><span>Scroll to dive in</span><i aria-hidden="true"></i></a>
+</section>
+
+<section id="problem" data-depth-label="The problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">The problem</span>
+      <h2 class="rv">You already know <em>what's broken.</em></h2>
+      <p class="lead rv">It's what happens when every job gets its own rented tool, and every tool keeps its own copy of your business.</p>
+    </div>
+    <div class="pains">
+      <article class="pain rv" style="--i:0">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 27V15M13 27V7M21 27V18M29 27V11"/></svg>
+        <h3>Five reports, five different numbers</h3>
+        <p>The DMS says one thing, the CRM another, the spreadsheet a third. Monday's meeting is spent arguing about whose number is right.</p>
+        <p class="cure"><b>With the lake:</b> one number, one definition, every store.</p>
+      </article>
+      <article class="pain rv" style="--i:1">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="9" width="24" height="16" rx="3"/><path d="M5 15h24M10 21h5"/></svg>
+        <h3>A new subscription for every job</h3>
+        <p>Each problem gets another vendor, another login and another monthly bill per store. The stack grows. The answers don't get clearer.</p>
+        <p class="cure"><b>With the factory:</b> build the small tools yourself, inside the assistant your team already uses. No new login.</p>
+      </article>
+      <article class="pain rv" style="--i:2">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="8" y="15" width="18" height="13" rx="2"/><path d="M12 15v-4a5 5 0 0110 0v4"/></svg>
+        <h3>Your data lives in other people's systems</h3>
+        <p>It's your customers, your deals and your service history, but getting a full copy out is slow, limited, or costs extra.</p>
+        <p class="cure"><b>With the lake:</b> your own copy, in your own account, in open formats.</p>
+      </article>
+      
+      <article class="pain rv" style="--i:4">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4l11 4v8c0 7-4.500 11.500-11 14C10.500 27.500 6 23 6 16V8z"/><path d="M17 12v6M17 22.500v.5"/></svg>
+        <h3>Your people already use AI, and nobody has checked it</h3>
+        <p>Staff paste work into personal AI accounts to get through the day, sometimes with customer details in it. Under the FTC Safeguards Rule, where that data goes is your responsibility.</p>
+        <p class="cure"><b>With us:</b> business accounts, house rules, a record of use, and a readiness pack for your attorney.</p>
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+<section id="idea" data-depth-label="The idea" >
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">The idea</span>
+      <h2 class="rv">Your advisor should be looking at <em>the customer, not the screen.</em></h2>
+      <p class="lead rv">One booked service visit, shown two ways.</p>
+    </div>
+    <div class="rv" id="lane-story"><noscript>Today a service advisor types while the customer waits. The idea: agents prepare each booked visit from the lake, the store's lane check-in confirms the car has arrived (a plate reader only where the store has posted notice and the customer has agreed), and the advisor greets the customer and decides.</noscript></div>
+
+      <p class="more rv"><a href="how-it-works.html#desks">See the same idea at every desk in the store <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<section id="lake" data-depth-label="The lake">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">01 — The lake</span>
+      <h2 class="rv">What a data lakehouse is, <em>in dealer words.</em></h2>
+      <p class="lead rv">Ask a simple question. Then flip the switch.</p>
+    </div>
+    <div class="rv" id="lake-explainer"><noscript>The lake copies data from every system at every store, cleans and matches it, and counts it by one agreed definition, so every report shows the same number.</noscript></div>
+
+    <div class="after-frame">
+      <div class="rv"><b>It's a copy, not a replacement</b><span>Your DMS, CRM and other systems keep running as they do today. The lake reads from them.</span></div>
+      <div class="rv" style="--i:1"><b>It's in your name</b><span>The lake lives in a cloud data account that belongs to your group. We run it for you.</span></div>
+      <div class="rv" style="--i:2"><b>It's open</b><span>Data is stored in open formats that other tools can read. If you leave, it stays with you.</span></div>
+    </div>
+    <div class="pilot rv"><p><b>Start small.</b> One job, two stores, read-only, month to month.</p><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a></div>
+  </div>
+</section>
+
+<section class="parts" aria-label="The four parts of RooftopLake">
+  <div class="wrap">
+    <ol>
+      <li><a href="#lake"><span class="num">01 — THE LAKE</span><h3>One copy of everything, owned by you</h3><p>Every store, every system, cleaned and counted the same way.</p></a></li>
+      <li><a href="how-it-works.html#door"><span class="num">02 — THE DOOR</span><h3>One secure door to it</h3><p>An MCP server: the standard way AI assistants reach data. You pick the assistant.</p></a></li>
+      <li><a href="#starters"><span class="num">03 — STARTERS</span><h3>Agents that work on day one</h3><p>Boxed apps and agents for real dealership jobs. Yours to change.</p></a></li>
+      <li><a href="how-it-works.html#factory"><span class="num">04 — THE FACTORY</span><h3>A way to build the rest</h3><p>Every agent is tested, approved and rolled out store by store.</p></a></li>
+    </ol>
+    <p class="more center rv"><a href="how-it-works.html">See how each part works <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<section id="starters" data-depth-label="Starters">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">03 — Starters</span>
+      <h2 class="rv">In the box: six agents for <em>real dealership jobs.</em></h2>
+      <p class="lead rv">Finished agents that run on your lake from the first week. They read and report, or they draft for a person to approve.</p>
+    </div>
+        <div class="starters" id="starterGrid">
+      <article class="starter featured rv" data-d="group"><div class="top"><span class="dept">Group · where most groups start</span><span class="tag read">Reads only</span></div><h3>Daily group report</h3><p>Every store's sales, service, parts and cash on one page each morning, counted the same way.</p><dl><dt>Reads</dt><dd>DMS, CRM, accounting</dd><dt>Aimed at replacing</dt><dd>A reporting dashboard subscription</dd></dl><div class="mini" aria-hidden="true"><div class="mini-top"><b>Group, yesterday</b><span>7:00 am</span></div>
+        <div class="mini-row"><span>Northside</span><i style="--w:78%"></i><em>14</em></div>
+        <div class="mini-row"><span>Lakeview</span><i style="--w:61%"></i><em>11</em></div>
+        <div class="mini-row"><span>Riverbend</span><i style="--w:89%"></i><em>16</em></div>
+        <div class="mini-row low"><span>Hillcrest</span><i style="--w:33%"></i><em>6</em></div>
+        <div class="mini-row"><span>Eastgate</span><i style="--w:67%"></i><em>12</em></div>
+        <small>Illustration. Made-up numbers.</small></div></article>
+      
+      <article class="starter rv" data-d="group" style="--i:2"><div class="top"><span class="dept">Group</span><span class="tag draft">Drafts for approval</span></div><h3>New-store onboarding</h3><p>Maps an acquired store's systems to your group's definitions and lists what doesn't match.</p><dl><dt>Reads</dt><dd>The new store's systems</dd><dt>Aimed at replacing</dt><dd>Months of manual clean-up</dd></dl></article>
+      <article class="starter rv" data-d="sales"><div class="top"><span class="dept">Sales</span><span class="tag read">Reads only</span></div><h3>Aged-inventory watcher</h3><p>Flags cars crossing your age limits at each store, with holding cost and where similar cars are selling.</p><dl><dt>Reads</dt><dd>Inventory, DMS, floorplan</dd><dt>Aimed at replacing</dt><dd>Aging spreadsheets</dd></dl></article>
+      <article class="starter rv" data-d="sales" style="--i:1"><div class="top"><span class="dept">Sales</span><span class="tag read">Reads only</span></div><h3>Lead-response audit</h3><p>Shows which leads waited too long for a first reply, by store, source and salesperson.</p><dl><dt>Reads</dt><dd>CRM, phone, website</dd><dt>Aimed at replacing</dt><dd>Manual CRM spot checks</dd></dl></article>
+      
+      <article class="starter rv" data-d="service"><div class="top"><span class="dept">Service</span><span class="tag draft">Drafts for approval</span></div><h3>Declined-work follow-up</h3><p>Finds service work customers declined and drafts a follow-up for your advisors to approve.</p><dl><dt>Reads</dt><dd>Service history, DMS</dd><dt>Aimed at replacing</dt><dd>A campaign-list tool</dd></dl></article>
+      <article class="starter rv" data-d="service" style="--i:1"><div class="top"><span class="dept">Service</span><span class="tag read">Reads only</span></div><h3>Warranty claim checker</h3><p>Checks claims against the usual rejection reasons before they're submitted.</p><dl><dt>Reads</dt><dd>Repair orders, claim history</dd><dt>Aimed at replacing</dt><dd>Rework after rejections</dd></dl></article>
+      
+    </div>
+    <p class="own-note rv">Every starter comes with its plain-English job sheet and its tests. Change the rules, the wording or the thresholds, and the factory takes your version through the same checks.</p>
+  </div>
+</section>
+
+<section id="promises" data-depth-label="Promises">
+  <div class="wrap">
+    <div class="wont">
+      <div class="rv"><span class="eyebrow">Our promises</span><h2 class="promise-line">Your data stays yours. <em>Your people stay in charge.</em></h2></div>
+      <ul>
+        <li class="rv"><b>We won't sell or share your data.</b><span>It is yours. We work on it only to run your lake and your agents.</span></li>
+        <li class="rv"><b>We won't lock you in.</b><span>Leave in any month and keep all of your data, in formats other tools can read.</span></li>
+        <li class="rv"><b>We won't let an agent contact a customer on its own.</b><span>Anything customer-facing is a draft until a named person at your store approves it. No recording of customers unless they opt in.</span></li>
+        <li class="rv"><b>We won't plan your headcount.</b><span>This is built to give your people time back for customers. What you do with that time is your call, not ours.</span></li>
+        <li class="rv"><b>We won't replace your DMS.</b><span>Deals, F&amp;I and lender connections stay where they are. We build around them.</span></li>
+        <li class="rv"><b>We won't claim results we haven't earned.</b><span>We're pre-launch. Every screen on this page is an illustration with made-up data.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="partners" data-depth-label="Start" >
+  <div class="wrap">
+    <div class="partner rv">
+      <div>
+        <span class="eyebrow">Design partners</span>
+        <h2>We're pre-launch, and looking for <em>a few groups to build this with.</em></h2>
+        <p style="margin-top:20px">A design partner is a dealer group that works with us directly while the product takes shape. You get it built around your stores. We get the truth about what works.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a></div>
+        <p class="fine">Emails zach@rooftoplake.com. No form, no sales sequence.</p>
+      </div>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>You work directly with the people building it.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>A small first pilot: one job, two stores, read-only, month to month.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Founding pricing, flat and agreed in writing before any work starts.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your data stays yours, and you can leave in any month with all of it.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>We never name you publicly unless you ask us to.</li>
+      </ul>
+      <svg class="rings" viewBox="0 0 520 520" fill="none" stroke="#5CC4C4" aria-hidden="true"><ellipse cx="260" cy="260" rx="60" ry="22"/><ellipse cx="260" cy="260" rx="120" ry="44"/><ellipse cx="260" cy="260" rx="180" ry="66"/><ellipse cx="260" cy="260" rx="240" ry="88"/></svg>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap narrow">
+    <div class="sec-head">
+      <span class="eyebrow rv">Straight answers</span>
+      <h2 class="rv">Questions a careful dealer <em>would ask.</em></h2>
+    </div>
+    <div class="faq rv">
+      <details><summary>Is this live? Who's using it?</summary><p>No one yet. RooftopLake is pre-launch. We're choosing a small number of design-partner groups to build the first version with. There are no customer logos on this page because we haven't earned any.</p></details>
+      <details><summary>Do I have to change my DMS or CRM?</summary><p>No. The lake copies data out of the systems you already run. Your people keep working in the same screens.</p></details>
+      <details><summary>How do you get the data out of my systems?</summary><p>Through the access routes your vendors offer to dealers and their approved partners. Some are simple, some need a contract, and some carry a fee from the vendor. This is the slowest part of any project like this, and we'll tell you where each of your systems stands before you commit to anything.</p><p>Reading data is the easy half. Letting an agent write into a system needs that vendor's agreement. Until it's in place, agents prepare the work and a person enters it.</p></details>
+      <details><summary>Who owns the data and the agents?</summary><p>You do. The lake sits in a cloud data account in your group's name. The job sheets, definitions and agents built for you are yours to keep.</p></details>
+      <details><summary>Are we even allowed to use AI on our vendor data?</summary><p>Often yes, with conditions, and it depends on your contracts and your state. Your agreements with your DMS, CRM and manufacturer each say something about who may touch the data and how. Part of our onboarding is a readiness pack: your documents, the clauses that matter and a short list of questions, prepared for your attorney to rule on. We don't give legal advice.</p></details>
+      <details><summary>Which AI does it use?</summary><p>Your choice. The door is an MCP server. MCP is the open standard that the major AI assistants use to reach data and tools, so you aren't tied to one AI company, and you can switch as they improve.</p></details>
+      <details><summary>Is it safe to let AI near customer data?</summary><p>Only with rules. Each person and each agent sees just what their role allows, every request is logged, each agent has a spending cap and an off switch, and nothing reaches a customer without a named person's approval.</p><p>We hold no security certifications yet and won't pretend to. The Safeguards Rule makes you responsible for checking vendors like us, so before any data moves you get our security plan and contract terms in writing. The first phase uses no credit applications or Social Security numbers, the lake sits in your account, and you can cut off our access at any time.</p></details>
+      <details><summary>Is this about replacing my people?</summary><p>No. It's about what they spend their day on. Agents take the looking-up, matching and re-keying. Your people keep the customer, the judgment and the sign-off. Staffing decisions stay with you.</p></details>
+      <details><summary>We don't have developers. Can we really build our own tools?</summary><p>Yes.  The factory is what makes it safe to repeat. You describe the job in plain English and decide what "good" looks like. We build with you at first. Over time your own operations people do more of it, because every agent follows the same path and the same checks.</p></details>
+      <details><summary>What does it cost?</summary><p>We haven't published pricing. Design partners get a flat founding price agreed in writing up front. Ask and we'll tell you straight.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="rv">Own the lake. <em>Build the rest.</em></h2>
+    <p class="lead rv">Tell us the one job you'd fix first. If we're a fit, we'll show you how we'd build it.</p>
+    <div class="cta-row rv"><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a></div>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="RooftopLake home"><svg aria-hidden="true"><use href="#i-mark"/></svg><span>Rooftop<b>Lake</b></span></a>
+    <p>RooftopLake is pre-launch. Product screens on this page are illustrations with made-up stores, people and numbers. © 2026 RooftopLake · <a href="mailto:zach@rooftoplake.com">zach@rooftoplake.com</a></p>
+  </div>
+</footer>
+
+<script src="js/scene.js?v=1794466640" defer></script>
+<script src="js/site.js?v=1794466640" defer></script>
+<script src="js/lane.js?v=1794466640" defer></script>
+<script src="js/explainer.js?v=1794466640" defer></script>
+<script src="js/demo.js?v=1794466640" defer></script>
+<script src="js/lifecycle.js?v=1794466640" defer></script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+/* RooftopLake living lake scene. Class prefix lk-. Pairs with js/scene.js.
+   The gradient on #lake-scene is the no-WebGL / no-JS fallback: dusk at the top, a dark bank with a lit kerb, deep water below.
+   It tracks --depth (set by scene.js) so the page still "dives" without WebGL. */
+#lake-scene{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:strict;
+  background-color:#05131A;
+  background-image:linear-gradient(180deg,
+    #04101A 0%,#082230 5%,#12333D 8%,#5E4129 9.5%,#C8733A 10.1%,#0C1B20 10.14%,#0C1B20 10.3%,#C4E6E0 10.32%,#C4E6E0 10.36%,#03090D 10.38%,#03090D 10.52%,#5A3A22 10.6%,
+    #0A2A31 11.6%,#06202A 16.6%,#0A3F47 24%,#083038 36%,#061F28 55%,#05131A 78%,#030B10 100%);
+  background-size:100% 600%;
+  background-position:0 calc(var(--depth,0)*100%);
+  background-repeat:no-repeat;
+}
+#lake-scene .lk-canvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .45s ease}
+#lake-scene.lk-on .lk-canvas{opacity:1}
+
+/* Depth gauge: the one interactive piece. */
+.lk-gauge{
+  position:fixed;right:22px;top:50%;z-index:6;width:16px;height:min(54vh,400px);transform:translateY(-50%);
+  font:500 10.5px/1 var(--font-mono,ui-monospace,Menlo,monospace);letter-spacing:.1em;text-transform:uppercase;
+}
+.lk-gauge::before{content:"";position:absolute;right:7px;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,rgba(242,182,92,.75),rgba(95,214,208,.5) 16%,rgba(95,214,208,.16))}
+.lk-gauge ol{list-style:none;margin:0;padding:0;position:absolute;left:0;right:0;top:0;bottom:0}
+.lk-gauge li{position:absolute;right:0;height:0;margin:0;padding:0}
+.lk-gauge a{
+  position:absolute;right:0;top:-12px;height:24px;display:flex;align-items:center;gap:10px;padding-left:10px;
+  color:var(--ink-2,#A9C0C3);text-decoration:none;white-space:nowrap;border-radius:6px;outline:0;
+}
+.lk-gauge a::after{content:"";flex:none;width:15px;height:1px;background:currentColor;opacity:.55;transition:opacity .25s,width .25s}
+.lk-lab{opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s var(--ease,ease);text-shadow:0 1px 10px rgba(3,13,18,.9)}
+.lk-gauge:hover .lk-lab,.lk-gauge:focus-within .lk-lab{opacity:.72;transform:none}
+.lk-gauge a.is-current{color:var(--teal,#5FD6D0)}
+.lk-gauge a.is-current .lk-lab,.lk-gauge a:hover .lk-lab,.lk-gauge a:focus-visible .lk-lab{opacity:1;transform:none}
+.lk-gauge a.is-current::after,.lk-gauge a:hover::after{opacity:1}
+.lk-gauge a:hover{color:var(--ink,#EDF6F4)}
+.lk-gauge a:focus-visible{color:var(--ink,#EDF6F4);box-shadow:0 0 0 2px var(--teal,#5FD6D0);background:rgba(3,13,18,.7)}
+.lk-mark{position:absolute;right:3px;top:-4.5px;width:9px;height:9px;border-radius:50%;background:var(--teal,#5FD6D0);
+  box-shadow:0 0 0 3px rgba(95,214,208,.16),0 0 16px rgba(95,214,208,.75);will-change:transform;pointer-events:none}
+.lk-read{position:absolute;right:0;top:calc(100% + 14px);color:var(--ink-2,#A9C0C3);opacity:.7;white-space:nowrap;pointer-events:none;
+  font-variant-numeric:tabular-nums;letter-spacing:.06em;text-transform:none}
+@media (max-width:1099px){.lk-gauge{display:none}}
+@media (prefers-reduced-motion:reduce){
+  #lake-scene .lk-canvas,.lk-lab,.lk-gauge a::after{transition:none}
+}

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How RooftopLake works — the door, the data and the factory</title>
+<meta name="description" content="How RooftopLake works: one secure door to your data, who sees what, how data gets in, and the lifecycle every agent passes before it runs across your stores.">
+<link rel="canonical" href="https://rooftoplake.com/how-it-works.html">
+<meta name="theme-color" content="#05131A">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rooftoplake.com/how-it-works.html">
+<meta property="og:title" content="RooftopLake — agents do the work. Your people decide.">
+<meta property="og:description" content="One lake you own. One secure door. Starter agents on day one. A factory to build the rest. For dealer groups.">
+<meta property="og:image" content="https://rooftoplake.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css?v=1794466640">
+<link rel="stylesheet" href="css/scene.css?v=1794466640">
+<link rel="stylesheet" href="css/site.css?v=1794466640">
+<link rel="stylesheet" href="css/lane.css?v=1794466640">
+<link rel="stylesheet" href="css/explainer.css?v=1794466640">
+<link rel="stylesheet" href="css/demo.css?v=1794466640">
+<link rel="stylesheet" href="css/lifecycle.css?v=1794466640">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"RooftopLake","url":"https://rooftoplake.com/","email":"zach@rooftoplake.com","description":"A dealer-owned data lake, a secure door for AI assistants, and an agent factory for dealer groups."}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="lake-scene" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 32 32"><path d="M3 9.500h20" fill="none" stroke="var(--ink)" stroke-width="2.400" stroke-linecap="round"/><path d="M5.500 9.500V19M21 9.500V19M5.500 19H21M10.700 9.500V19M15.900 9.500V19" fill="none" stroke="var(--ink)" stroke-width="1.700" stroke-linecap="round"/><path d="M27 4.500V19" fill="none" stroke="var(--ink)" stroke-width="1.700" stroke-linecap="round"/><rect x="24.600" y="3" width="4.800" height="5" rx="1" fill="var(--brass)"/><path d="M3 24c3-1.800 6-1.800 9 0s6 1.800 9 0 6-1.800 8 0M7 29c2.300-1.300 4.700-1.300 7 0s4.700 1.300 7 0" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html" aria-label="RooftopLake home"><svg aria-hidden="true"><use href="#i-mark"/></svg><span>Rooftop<b>Lake</b></span></a>
+    <nav aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="#door">The door</a>
+      <a href="#data">Data in</a>
+      <a href="#desks">Every desk</a>
+      <a href="#factory">The factory</a>
+      <a href="#run">With you</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+<section class="hero hero-sub" id="top" data-depth-label="Surface">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="badge rv"><i></i>How it works</div>
+      <h1 class="rv" style="--i:1">Under the surface. <em>How RooftopLake works.</em></h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="lead rv" style="--i:2">The door, the access rules, the data feeds and the factory, each one shown working. Every screen is an illustration with made-up data.</p>
+      <div class="cta-row rv" style="--i:3"><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a><a class="btn btn-ghost" href="index.html">Back to the overview</a></div>
+    </div>
+  </div>
+  <a class="dive" href="#door" aria-label="Scroll down to dive in"><span>Scroll to dive in</span><i aria-hidden="true"></i></a>
+</section>
+
+<section id="door" data-depth-label="The door">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">02 — The door</span>
+      <h2 class="rv">One secure door. <em>Any assistant you choose.</em></h2>
+      <p class="lead rv">One door stands in front of the lake. Every request is checked against who is asking, written to a log, and held for a named person if it would change anything or reach a customer.</p>
+    </div>
+    <div class="rv" id="agent-demo"><noscript>An interactive demo shows an assistant answering questions across five example stores through one secure door.</noscript></div>
+    <div class="access rv" id="access">
+      <div class="desks-head"><h3>Who sees what</h3><p>Pick a role. Everything starts closed, and you open only what each job needs. This is an example starting point; your group sets the rules.</p></div>
+      <div class="chips" role="group" aria-label="Pick a role" id="roleChips"></div>
+      <div class="access-card">
+        <div class="access-who"><b id="roleName"></b><span id="roleNote"></span></div>
+        <ul id="accessList" aria-live="polite"></ul>
+        <p class="access-foot">Every look, draft and approval is written to a log that lives in your account. People sign in with your group's own sign-in, and access ends the day someone leaves.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="data" data-depth-label="Data in">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow rv">Filling the lake</span><h2 class="rv">Only through routes <em>you approve.</em></h2></div>
+<div class="datain rv" id="data-in">
+      <div class="desks-head"><p>In this order. You can switch any feed off yourself.</p></div>
+      <div class="datain-grid">
+        <ol class="routes">
+          <li><span class="num">ROUTE 1</span><b>A certified feed from your DMS</b><span>A nightly copy through a data-extract service your DMS already certifies. You approve it. Nobody shares a login.</span></li>
+          <li><span class="num">ROUTE 2</span><b>Leads, phones and website</b><span>A copy of every lead as it arrives, plus your phone and website numbers through their own connections.</span></li>
+          <li><span class="num">ROUTE 3</span><b>Reports your systems already send</b><span>Scheduled reports and exports fill the gaps. This is how a first pilot starts without waiting on a contract.</span></li>
+          <li><span class="num">ROUTE 4</span><b>Your DMS's official connection</b><span>We apply on day one. It takes longest, and it's the only proper way for an agent to write anything back.</span></li>
+          <li class="never"><span class="num">NEVER</span><b>No back doors</b><span>No shared passwords, no screen scraping, no unofficial connections to your DMS.</span></li>
+        </ol>
+        <div class="feeds" aria-label="Example feed board">
+          <div class="feeds-top"><b>Feed board</b><span id="feedSummary" aria-live="polite">6 of 6 feeds on · all fresh</span></div>
+          <ul id="feedList">
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">DMS: deals and repair orders</span></label><span class="fs">Fresh · 2:10 am</span></li>
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">DMS: accounting</span></label><span class="fs">Fresh · 2:14 am</span></li>
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">CRM: leads and follow-up</span></label><span class="fs">Fresh · 4 min ago</span></li>
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">Inventory and pricing</span></label><span class="fs">Fresh · 3:02 am</span></li>
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">Service scheduler</span></label><span class="fs">Fresh · 12 min ago</span></li>
+            <li><label><input type="checkbox" checked><span class="sw" aria-hidden="true"></span><span class="fn">Phones</span></label><span class="fs">Fresh · 9 min ago</span></li>
+          </ul>
+          <p class="feeds-note">Illustration. Try switching one off. Every feed shows when it last arrived, and you're told if one goes stale or changes shape.</p>
+        </div>
+      </div>
+    </div>
+      </div>
+</section>
+
+<section id="desks" data-depth-label="Every desk">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow rv">Agents do the work. People decide.</span><h2 class="rv">The same pattern, <em>at every desk.</em></h2></div>
+<div class="desks rv">
+      <div class="desks-head"><p>Pick a desk. These are the workflows we intend to build with design partners, not finished products. Where a system doesn't let outside software write to it yet, the agent drafts and a person enters it.</p></div>
+      <div class="chips" role="tablist" aria-label="Desks in the store" id="deskTabs"><button class="chip" type="button" role="tab" id="dk-t-lane" aria-controls="dk-p-lane" aria-selected="true" tabindex="0">Service lane</button><button class="chip" type="button" role="tab" id="dk-t-sales" aria-controls="dk-p-sales" aria-selected="false" tabindex="-1">Sales desk</button><button class="chip" type="button" role="tab" id="dk-t-bdc" aria-controls="dk-p-bdc" aria-selected="false" tabindex="-1">BDC and leads</button><button class="chip" type="button" role="tab" id="dk-t-used" aria-controls="dk-p-used" aria-selected="false" tabindex="-1">Used-car desk</button><button class="chip" type="button" role="tab" id="dk-t-parts" aria-controls="dk-p-parts" aria-selected="false" tabindex="-1">Parts counter</button><button class="chip" type="button" role="tab" id="dk-t-office" aria-controls="dk-p-office" aria-selected="false" tabindex="-1">Accounting office</button><button class="chip" type="button" role="tab" id="dk-t-group" aria-controls="dk-p-group" aria-selected="false" tabindex="-1">Owner's office</button></div>
+      <div class="desk-panel" role="tabpanel" id="dk-p-lane" aria-labelledby="dk-t-lane" tabindex="0">
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Prepare each booked visit the night before, from the appointment</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Pull history, open recalls and work declined last time</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Draft the repair order and line up a loaner, ready when your lane check-in sees the car arrive</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Update the draft when the advisor says or taps a change on a tablet</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Greet the customer by name</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Confirm why they're here</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Approve any added work</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Review and sign off the repair order</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Service history, appointments, recalls, parts, loaners</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-sales" aria-labelledby="dk-t-sales" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Build the deal jacket: trade value, payoff, incentives that apply</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Carry over what the customer already told you online</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Check every document is present and matches</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Prepare the handover to finance</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Structure the deal</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Negotiate with the customer</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Say yes or no</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Deliver the car</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Inventory, CRM, desking, lender and incentive data</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-bdc" aria-labelledby="dk-t-bdc" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Read every lead the minute it arrives</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Match it to the customer and household you already know</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Check the customer's consent, then draft the first reply and offer times</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Flag the leads that need a person now</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Approve what goes out, with one tap</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Make the calls that matter</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Set the tone and the rules</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Coach the team on what the audit shows</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>CRM, website, phone, service history</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-used" aria-labelledby="dk-t-used" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Watch age, market and recon status across every store</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Propose price moves and store-to-store transfers</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Chase the recon step that is holding a car up</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Line up appraisal facts before the customer arrives</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Decide the price</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Decide what to buy and what to wholesale</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Approve transfers</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Walk the lot</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Inventory, recon, market data, floorplan</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-parts" aria-labelledby="dk-t-parts" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Match parts to tomorrow's appointments</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Flag what is out of stock before the car is on the lift</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Draft the stock order and track special orders</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Follow up on returns and cores</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Approve the order</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Handle the customer and the technicians</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Decide stocking levels</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Deal with the exceptions</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Parts inventory, appointments, repair orders</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-office" aria-labelledby="dk-t-office" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Reconcile schedules every day, not at month end</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Chase missing and mismatched deal documents</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Prepare warranty claims and check them first</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Draft month-end entries with the back-up attached</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Review the exceptions</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Approve entries and claims</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Sign the statement</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Advise the owner</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Accounting, DMS, deal jackets, claims</p>
+      </div><div class="desk-panel" role="tabpanel" id="dk-p-group" aria-labelledby="dk-t-group" tabindex="0" hidden>
+        <div class="desk-col agent"><h4>Agents do the work</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Write the morning brief for the whole group</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Compare stores on the same definitions</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Spot the outlier before it becomes a problem</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Bring a new store into the same picture</span></li></ul></div>
+        <div class="desk-col human"><h4>Your people decide</h4><ul><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Decide where to spend attention</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Set the targets and the rules</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Hold managers to one set of numbers</span></li><li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Choose what the factory builds next</span></li></ul></div>
+        <p class="desk-needs"><span>Needs from the lake</span>Everything in the lake</p>
+      </div>
+    </div>
+    <div class="ladder rv">
+      <div class="ladder-head"><h3>Agents earn trust one step at a time</h3><p>No agent starts with the keys. Each one moves up only when your managers say it has earned it, and you can move it back down.</p></div>
+      <ol>
+        <li><span class="num">STEP 1</span><b>Watch</b><span>It reads and reports. It changes nothing.</span></li>
+        <li><span class="num">STEP 2</span><b>Draft</b><span>It prepares the work. A person sends it.</span></li>
+        <li><span class="num">STEP 3</span><b>Do, with approval</b><span>It does the work after a named person says yes.</span></li>
+        <li><span class="num">STEP 4</span><b>Do, within limits</b><span>It handles routine cases inside limits you set, and asks about the rest.</span></li>
+      </ol>
+    </div>
+  
+  </div>
+</section>
+
+<section id="factory" data-depth-label="The factory">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">04 — The factory</span>
+      <h2 class="rv">Hire an agent the way you'd <em>hire a manager.</em></h2>
+      <p class="lead rv">You wouldn't hand a new hire the keys to every store on day one. Agents get the same treatment: a clear job, a test on your own history, a supervised trial at one store, then the group. Every agent follows the same steps, and you hold the off switch.</p>
+    </div>
+    <div class="rv" id="factory-lifecycle"><noscript>The agent lifecycle has eight stages: pick the job, give it the data, build it, test it, shadow it, pilot store live, roll to the group, and watch, fix, retire.</noscript></div>
+  </div>
+</section>
+
+<section id="run" data-depth-label="With you">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">We run it with you</span>
+      <h2 class="rv">You don't need a data team <em>to start.</em></h2>
+      <p class="lead rv">Most groups can't hire data engineers, AI specialists and a compliance desk. RooftopLake is the product and the service that runs it, until your own team is ready to take more of it on.</p>
+    </div>
+    <div class="runs">
+      <article class="run rv"><span class="num">01</span><h3>We build and run the lake</h3><p>We set up the cloud data account in your name, connect the feeds, watch them every day, and fix them when a vendor changes something.</p></article>
+      <article class="run rv" style="--i:1"><span class="num">02</span><h3>We set up your team's AI</h3><p>Business accounts for the assistant you choose, connected to the door, with each person's access and your house rules built in. No customer data in personal accounts.</p></article>
+      <article class="run rv" style="--i:2"><span class="num">03</span><h3>We train your people</h3><p>Short, practical sessions for managers and staff: what to ask, how to check an answer, when to say no. Plus the tools and guides to build small things themselves.</p></article>
+      <article class="run rv" style="--i:3"><span class="num">04</span><h3>We line up the legal homework</h3><p>What do your DMS, CRM and manufacturer agreements allow? We gather the documents, the questions and the public rules, so your attorney can answer quickly. We aren't attorneys and don't give legal advice.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="partners" data-depth-label="Start">
+  <div class="wrap">
+    <div class="partner rv">
+      <div>
+        <span class="eyebrow">Design partners</span>
+        <h2>We're pre-launch, and looking for <em>a few groups to build this with.</em></h2>
+        <p style="margin-top:20px">A design partner is a dealer group that works with us directly while the product takes shape. You get it built around your stores. We get the truth about what works.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a></div>
+        <p class="fine">Emails zach@rooftoplake.com. No form, no sales sequence.</p>
+      </div>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>You work directly with the people building it.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>A small first pilot: one job, two stores, read-only, month to month.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Founding pricing, flat and agreed in writing before any work starts.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Your data stays yours, and you can leave in any month with all of it.</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg>We never name you publicly unless you ask us to.</li>
+      </ul>
+      <svg class="rings" viewBox="0 0 520 520" fill="none" stroke="#5CC4C4" aria-hidden="true"><ellipse cx="260" cy="260" rx="60" ry="22"/><ellipse cx="260" cy="260" rx="120" ry="44"/><ellipse cx="260" cy="260" rx="180" ry="66"/><ellipse cx="260" cy="260" rx="240" ry="88"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="rv">Own the lake. <em>Build the rest.</em></h2>
+    <p class="lead rv">Tell us the one job you'd fix first. If we're a fit, we'll show you how we'd build it.</p>
+    <div class="cta-row rv"><a class="btn btn-primary" href="mailto:zach@rooftoplake.com?subject=RooftopLake%20design%20partner">Become a design partner</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="mark" href="index.html" aria-label="RooftopLake home"><svg aria-hidden="true"><use href="#i-mark"/></svg><span>Rooftop<b>Lake</b></span></a>
+    <p>RooftopLake is pre-launch. Product screens on this page are illustrations with made-up stores, people and numbers. © 2026 RooftopLake · <a href="mailto:zach@rooftoplake.com">zach@rooftoplake.com</a></p>
+  </div>
+</footer>
+
+<script src="js/scene.js?v=1794466640" defer></script>
+<script src="js/site.js?v=1794466640" defer></script>
+<script src="js/lane.js?v=1794466640" defer></script>
+<script src="js/explainer.js?v=1794466640" defer></script>
+<script src="js/demo.js?v=1794466640" defer></script>
+<script src="js/lifecycle.js?v=1794466640" defer></script>
+</body>
+</html>
