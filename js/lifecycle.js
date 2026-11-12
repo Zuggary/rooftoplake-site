@@ -155,7 +155,7 @@
 
     mount.classList.add("lc");
     mount.setAttribute("role", "region");
-    mount.setAttribute("aria-label", "Agent factory: the eight stages every agent goes through");
+    mount.setAttribute("aria-label", "Your group's AI team: the eight stages every agent goes through");
     mount.innerHTML =
       '<div class="lc-top">' +
         '<div class="lc-agents" role="group" aria-label="Pick an example agent"></div>' +
