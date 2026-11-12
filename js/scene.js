@@ -511,6 +511,7 @@
           var merge = ss(sA, sB, w), order = ss(sB, sC, w), fin = ss(sC, sC + 0.03, w);
           var r1 = hh(i, sid), dens = 0.5 + 0.5 * order;
           if (r1 > dens + 0.06) continue;
+          if (order > 0.8 && hh(i + 0.5, sid) < 0.5) continue; // deep down, drop half the beads so strands do not read as dotted rules
           var al = clamp((dens + 0.06 - r1) / 0.06, 0, 1);
           var r2 = hh(i + 0.31, sid + 1.7), r3 = hh(i + 0.77, sid + 4.1), r4 = hh(i + 0.13, sid + 9.2);
           var y0 = 0.5 - (w - p) * K;
@@ -526,7 +527,7 @@
             jy = Math.sin(t * (0.9 + r4 * 2) + r3 * 40) * jit * asp * (1 - merge);
           }
           // below the surface the dots are teal only
-          var size = lerp(2.6 + 4.6 * r2 * r2, 3.7, order) * (1 + 0.2 * gz), alpha = (1 + 0.4 * gz) * al * lerp(0.85, 0.6, merge) * (1 + 0.2 * fin) * (narrow ? 0.8 : 1) * ss(0, 0.05, wl - y0);
+          var size = lerp(2.6 + 4.6 * r2 * r2, 2.2 + 1.6 * r2, order) * (1 + 0.2 * gz), alpha = lerp(1, 0.35, order) * (1 + 0.4 * gz) * al * lerp(0.85, 0.6, merge) * (1 + 0.2 * fin) * (narrow ? 0.8 : 1) * ss(0, 0.05, wl - y0);
           for (var tw = 0; tw < 2; tw++) {
             if (tw && merge >= 0.995) break;
             var um = (1 - merge) * (1 - merge), x2 = cx + bx + jx + (r3 - 0.5) * scat * um * (tw ? -1 : 1) + (tw ? (r2 - 0.5) * scat * 0.7 * um : 0);
@@ -633,7 +634,7 @@
   function start() {
     buildGauge();
     secEls = doc.querySelectorAll('[data-depth-label]');
-    headEls = doc.querySelectorAll('.sec-head');
+    headEls = doc.querySelectorAll('.sec-head, #lane-story, #lake-explainer, #starterGrid, .wont, .partner, .faq, #agent-demo, .access, .datain, .desks, .ladder, #factory-lifecycle, .runs');
     measure(true);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });

@@ -508,7 +508,7 @@
     /* approval moment */
     function buildActions(ans) {
       var actions = h('div', 'dm-actions');
-      var approve = btn('dm-btn dm-btn--primary', 'Approve');
+      var approve = btn('dm-btn dm-btn--primary', 'Approve as Dana');
       var edit = btn('dm-btn', 'Edit');
       var discard = btn('dm-btn dm-btn--quiet', 'Discard');
       edit.setAttribute('aria-pressed', 'false');
@@ -555,7 +555,7 @@
         return p0.then(function () {
           if (tok !== S.token) return;
           swapText(cur.unitTx, kind === 'approve' ? 'drafts approved' : 'drafts discarded');
-          swapText(cur.subTx, kind === 'approve' ? 'Approved by Dana. In the real product these would now send.' : 'Discarded. Nothing was sent.');
+          swapText(cur.subTx, kind === 'approve' ? 'Approved by Dana Brooks. Once built, approved drafts would send from your own systems.' : 'Discarded. Nothing was sent.');
           if (kind === 'approve') {
             setGate('approved', 'Approved');
             setStage(2, [line(['ok', 'approved '], ['', 'by dana.brooks']), line(['k', 'send '], ['', 'would send 3 · illustration'])], 'Nothing was sent. This is an illustration.');
@@ -567,7 +567,7 @@
           return wait(40).then(function () {
             reveal(2);
             done(kind === 'approve'
-              ? 'In the real product this would send. This is an illustration.'
+              ? 'Once built, this would send from your own systems. This is an illustration.'
               : 'Discarded. Nothing was sent. This is an illustration.');
           });
         });
@@ -750,7 +750,9 @@
       });
       chain.then(function () {
         if (my !== mToken) return;
-        Object.keys(max).forEach(function (k) { parts[k].style.minHeight = max[k] + 'px'; });
+        // on a phone the answer panel grows with its content: reserving the tallest answer left an empty band
+        var narrow = window.matchMedia && window.matchMedia('(max-width:720px)').matches;
+        Object.keys(max).forEach(function (k) { parts[k].style.minHeight = (narrow && k === 'a') ? '' : max[k] + 'px'; });
       });
     }
     remeasure();
