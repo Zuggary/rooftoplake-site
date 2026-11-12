@@ -90,7 +90,7 @@
         "Daily health and cost checks, plus a monthly review with Dana Brooks. New wording goes back to Test. It retires when declined work stops coming back."
       ],
       who: [["F", "P"], ["IT", "F"], ["RL", "F"], ["F", "RL"], ["F", "GM"], ["GM", "F", "IT"], ["P", "GM", "F"], ["F", "IT", "P"]],
-      job: [["Job", "Draft declined-work follow-ups"], ["Owner", "Fixed-ops director"], ["Moves", "Declined work brought back"], ["Never", "Sends without approval"]],
+      job: [["Job", "Draft declined-work follow-ups"], ["Owner", "Dana Brooks (Fixed-ops director)"], ["Moves", "Declined work brought back"], ["Never", "Sends without approval"]],
       data: [["Declined repair lines", 1], ["Contact (masked)", 1], ["Contact consent", 1], ["Credit applications", 0], ["Deal jackets", 0]],
       rules: ["Declined in the last 90 days", "Skip anyone without consent", "Every draft waits for approval"],
       test: [46, 50, "drafts a manager would send"],
@@ -116,6 +116,14 @@
   }
   var BARS = '<div class="lc-bars" aria-hidden="true"><i></i><i></i></div>';
 
+  // the same abstract sign marks as the hero showrooms: ring, chevron, diamond, bar, ring and dot
+  var GLYPH = [
+    '<circle class="lc-r-mark lc-r-line" cx="10" cy="13.5" r="3.3"/>',
+    '<path class="lc-r-mark lc-r-line" d="M6 15.6L10 11.4L14 15.6"/>',
+    '<path class="lc-r-mark" d="M10 9.6L13.9 13.5L10 17.4L6.1 13.5Z"/>',
+    '<rect class="lc-r-mark" x="5.6" y="12.6" width="8.8" height="1.9" rx=".5"/>',
+    '<circle class="lc-r-mark lc-r-line" cx="10" cy="13.5" r="3.3"/><circle class="lc-r-mark" cx="10" cy="13.5" r="1"/>'
+  ];
   function roof(k) {
     var f = "lc-glow-" + k;
     return '<svg class="lc-roof-svg" viewBox="0 0 100 60" aria-hidden="true" focusable="false">' +
@@ -123,7 +131,7 @@
       '<rect class="lc-r-ground" x="0" y="55" width="100" height="1.6" rx=".8"/>' +
       '<rect class="lc-r-post" x="8.5" y="20" width="3" height="35"/>' +
       '<rect class="lc-r-sign" x="4" y="5" width="12" height="17" rx="1.5"/>' +
-      '<rect class="lc-r-mark" x="6.5" y="8" width="7" height="2.2" rx="1"/><rect class="lc-r-mark" x="6.5" y="12" width="7" height="1.4" rx=".7"/><rect class="lc-r-mark" x="6.5" y="15" width="5" height="1.4" rx=".7"/>' +
+      GLYPH[k % GLYPH.length] +
       '<rect class="lc-r-body" x="23" y="29" width="73" height="26"/>' +
       '<rect class="lc-r-halo" x="25" y="30" width="58" height="25" filter="url(#' + f + ')"/>' +
       '<rect class="lc-r-glass" x="27" y="32" width="54" height="21"/>' +
@@ -428,7 +436,7 @@
       var a = AGENTS[S.agent];
       divider("Stage " + (i + 1) + " · " + STAGES[i].n);
       switch (i) {
-        case 0: log(owner(), "job sheet signed"); break;
+        case 0: log(owner(), "job sheet drafted"); break;
         case 1: log("IT/ops lead", "data pass granted, " + a.data.filter(function (d) { return d[1]; }).length + " sources"); break;
         case 2: log("RooftopLake", "v0.1 built from " + a.starter.toLowerCase()); break;
         case 3: log("Test", "ran " + a.test[1] + " past cases, " + a.test[0] + " matched"); log("Test", "kill switch tested, works"); break;

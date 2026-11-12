@@ -40,6 +40,8 @@
 .lk-read{position:absolute;right:0;top:calc(100% + 14px);color:var(--ink-2,#A9C0C3);opacity:.7;white-space:nowrap;pointer-events:none;
   font-variant-numeric:tabular-nums;letter-spacing:.06em;text-transform:none}
 @media (max-width:1099px){.lk-gauge{display:none}}
+/* Up to 1400px the right margin is too narrow for a label: the current one shows only while the gauge is hovered or focused. */
+@media (max-width:1400px){.lk-gauge:not(:hover):not(:focus-within) a.is-current .lk-lab{opacity:0;transform:translateX(6px)}}
 @media (prefers-reduced-motion:reduce){
   #lake-scene .lk-canvas,.lk-lab,.lk-gauge a::after{transition:none}
 }

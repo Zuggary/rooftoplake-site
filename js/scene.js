@@ -31,6 +31,7 @@
   var roofs = [], lands = [];
   // deep-water variety: section anchors (px and page progress), glow pool x/y/strength, shaft strength
   var secEls = [], secA = [], secW = [], gX = 0.5, gY = 0.5, gS = 0, gF = 0;
+  var headEls = [], heads = [], hv = []; // section heads: dots under water fade out near them so text stays clean
   function poolX(i) { return narrow ? 0.5 : (i & 1 ? 0.7 : 0.34); }
   var LD = [0.19, 0.12, 0.25, 0.14, 0.205];
 
@@ -89,6 +90,11 @@
     for (i = 0; i < secEls.length; i++) {
       secA[i] = secEls[i].getBoundingClientRect().top + y0 + vh * 0.16;
       secW[i] = (secA[i] - vh * 0.5) / range;
+    }
+    heads.length = 0;
+    for (i = 0; i < headEls.length; i++) {
+      var hr = headEls[i].getBoundingClientRect();
+      if (hr.width && hr.height) heads.push([hr.left, hr.top + y0, hr.right, hr.bottom + y0]);
     }
     scrollDirty = true;
     return changed;
@@ -338,7 +344,7 @@
       ' for(int i=0;i<2;i++){float sc=i==0?26.:47.;float pr=i==0?.5:.32;',
       '  vec2 gq=vec2(uv.x*asp+uT*.006,uv.y-uP*uK*pr+uT*.011)*sc;vec2 id=floor(gq);float r=hs(id+float(i)*31.);',
       '  float dd=length(fract(gq)-.5-(vec2(hs(id+5.3),hs(id+11.9))-.5)*.7);',
-      '  c+=vec3(.45,.78,.76)*smoothstep(.07,0.,dd)*r*r*r*.30;}',
+      '  c+=vec3(.45,.78,.76)*smoothstep(.07,0.,dd)*r*r*r*.14;}',
       '#endif',
       // the lake bed
       ' if(uB>0.){float fy=-.14+uB*.30+sin(uv.x*asp*2.+1.)*.012+vn(vec2(uv.x*asp*5.,3.))*.018;',
@@ -406,6 +412,7 @@
     return true;
   }
   function sizeCanvas() {
+    if (!vw || !vh) return; // a hidden or zero-size pane: nothing to size yet
     var d = Math.min(window.devicePixelRatio || 1, vw > 900 ? 1.5 : 2) * [0.5, 0.72, 1][tier];
     var cap = [520000, 1050000, 2300000][tier], n = vw * vh * d * d;
     if (n > cap) d *= Math.sqrt(cap / n);
@@ -479,6 +486,24 @@
       var fy = -0.14 + bed * 0.3, jit = 5 / vw;
       sptx += (ptx - sptx) * 0.12; spty += (pty - spty) * 0.12;
       var nS = secW.length, q, dq, gz, gq;
+      // section heads on screen, as 0..1 boxes padded by 40 px
+      var nh = 0, hp = 40, hi;
+      for (hi = 0; hi < heads.length; hi++) {
+        var hb = heads[hi], t0 = hb[1] - sY - hp, t1 = hb[3] - sY + hp;
+        if (t1 < 0 || t0 > vh) continue;
+        var ho = nh * 4; hv[ho] = (hb[0] - hp) / vw; hv[ho + 1] = (hb[2] + hp) / vw; hv[ho + 2] = 1 - t1 / vh; hv[ho + 3] = 1 - t0 / vh; nh++;
+      }
+      var fx = hp / vw, fyv = hp / vh;
+      var headFade = function (x, y) { // 0 inside a head, rising to 1 at the edge of its 40 px band
+        var m = 1;
+        for (var a = 0; a < nh; a++) {
+          var o = a * 4;
+          if (x < hv[o] || x > hv[o + 1] || y < hv[o + 2] || y > hv[o + 3]) continue;
+          var ex = Math.min(x - hv[o], hv[o + 1] - x) / fx, ey = Math.min(y - hv[o + 2], hv[o + 3] - y) / fyv;
+          m = Math.min(m, 1 - ss(0, 1, Math.min(ex, ey))); // ex/ey: distance in from the band's outer edge, in band widths
+        }
+        return m;
+      };
       for (k = 0; k < lands.length; k++) for (j = 0; j < nst; j++) {
         var off = j * 0.37 * dW + sink, i0 = Math.floor((wTop - off) / dW), i1 = Math.ceil((wBot - off) / dW), sid = k * 7 + j * 3;
         for (i = i0; i <= i1; i++) {
@@ -500,8 +525,7 @@
             jx = (Math.sin(t * (2.3 + r2 * 3) + r3 * 60) * 0.7 + Math.sin(t * (1.2 + r3 * 2) + r4 * 40)) * jit * (1 - merge);
             jy = Math.sin(t * (0.9 + r4 * 2) + r3 * 40) * jit * asp * (1 - merge);
           }
-          var c0 = PAL[(r4 * 97 | 0) % PAL.length];
-          tmpc[0] = lerp(c0[0], AQ[0], order); tmpc[1] = lerp(c0[1], AQ[1], order); tmpc[2] = lerp(c0[2], AQ[2], order);
+          // below the surface the dots are teal only
           var size = lerp(2.6 + 4.6 * r2 * r2, 3.7, order) * (1 + 0.2 * gz), alpha = (1 + 0.4 * gz) * al * lerp(0.85, 0.6, merge) * (1 + 0.2 * fin) * (narrow ? 0.8 : 1) * ss(0, 0.05, wl - y0);
           for (var tw = 0; tw < 2; tw++) {
             if (tw && merge >= 0.995) break;
@@ -515,7 +539,8 @@
             }
             var dxp = x2 - sptx, dyp = (y2 - spty) / asp, dd = dxp * dxp + dyp * dyp;
             if (dd < 0.02) { var f = 0.022 * Math.exp(-dd * 260) / (Math.sqrt(dd) + 0.02); x2 += dxp * f; y2 += dyp * f * asp; }
-            dot(x2, y2, size, tmpc, a2);
+            if (nh) a2 *= headFade(x2, y2);
+            dot(x2, y2, size, AQ, a2);
           }
         }
       }
@@ -608,6 +633,7 @@
   function start() {
     buildGauge();
     secEls = doc.querySelectorAll('[data-depth-label]');
+    headEls = doc.querySelectorAll('.sec-head');
     measure(true);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });

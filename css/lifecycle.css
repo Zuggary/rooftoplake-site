@@ -119,6 +119,9 @@
 .lc-r-halo{fill:var(--brass);opacity:0}
 .lc-r-post,.lc-r-sign,.lc-r-roof{fill:var(--line)}
 .lc-r-mark{fill:var(--paper)}
+.lc-r-line{fill:none !important;stroke:var(--paper);stroke-width:1.6}
+.lc-store.lc-is-live .lc-r-line{stroke:var(--on-teal)}
+.lc-store.lc-is-paused .lc-r-line{stroke:var(--paper)}
 .lc-r-body{fill:var(--paper);stroke:var(--line);stroke-width:1}
 .lc-r-glass{fill:var(--teal-soft);opacity:.55}
 .lc-r-car{fill:var(--line);opacity:.7}

@@ -35,8 +35,8 @@
 .lx-label { font-size: 13px; font-weight: 500; color: var(--ink-2); }
 .lx-seg { display: inline-flex; padding: 0; overflow: hidden; }
 .lx-num {
-  width: 44px; min-height: 42px; border-radius: 999px; font-weight: 500; font-size: 15px; color: var(--lx-ctl-ink);
-  font-family: var(--font-mono); transition: background .3s var(--ease), color .3s var(--ease);
+  width: 44px; min-height: 44px; border-radius: 999px; font-weight: 500; font-size: 15px; color: var(--lx-ctl-ink);
+  font-family: var(--font-body); transition: background .3s var(--ease), color .3s var(--ease);
 }
 .lx-num[aria-pressed="true"] { background: var(--teal); color: var(--on-teal); }
 .lx-switch { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-width: 300px; }
@@ -46,7 +46,7 @@
 }
 .lx[data-mode="lake"] .lx-thumb { transform: translateX(100%); }
 .lx-sw {
-  position: relative; z-index: 1; min-height: 42px; padding: 0 18px; border-radius: 999px;
+  position: relative; z-index: 1; min-height: 44px; padding: 0 18px; border-radius: 999px;
   font-weight: 500; font-size: 15px; color: var(--lx-ctl-ink); transition: color .4s var(--ease);
 }
 .lx-sw[aria-pressed="true"] { color: var(--on-teal); }

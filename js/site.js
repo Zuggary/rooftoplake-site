@@ -80,10 +80,10 @@
 
   // Who sees what
   var ROWS = ['Store results','Financial statement','Customer contact details','Deal gross and cost','Credit applications and SSNs','Service history','Payroll and HR'];
-  var S = {all:['All stores','ok'],store:['Own store only','ok'],dept:['Own department','ok'],mask:['Masked','mid'],tot:['Totals only','mid'],lim:['Appointments only','mid'],ask:['Only with your approval','mid'],own:['Same as its owner, or less','mid'],veh:['Vehicle history only','mid'],no:['No','no']};
+  var S = {all:['All stores','ok'],store:['Own store only','ok'],dept:['Own department','ok'],mask:['Masked','mid'],phase:['Not in the first phase','no'],tot:['Totals only','mid'],lim:['Appointments only','mid'],ask:['Only with your approval','mid'],own:['Same as its owner, or less','mid'],veh:['Vehicle history only','mid'],no:['No','no']};
   var ROLES = [
-    ['Dealer principal','Sees the whole group. Sensitive details stay masked until needed, and every unmasking is logged.',['all','all','all','all','mask','all','all']],
-    ['Controller','Sees the money across the group. Unmasking credit data is logged.',['all','all','all','all','mask','all','all']],
+    ['Dealer principal','Sees the whole group. Sensitive details stay masked until needed, and every unmasking is logged.',['all','all','all','all','phase','all','all']],
+    ['Controller','Sees the money across the group. Unmasking any sensitive detail is logged.',['all','all','all','all','phase','all','all']],
     ['Store GM','Sees one store, top to bottom.',['store','store','store','store','no','store','tot']],
     ['Sales manager','Sees the sales side of one store.',['dept','no','store','store','no','store','no']],
     ['Service advisor','Sees the customers and cars in their own lane.',['dept','no','store','no','no','store','no']],

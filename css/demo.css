@@ -53,7 +53,7 @@
 .dm-ans--leaving{opacity:0;transform:translateY(8px)}
 .dm-ans--stale{opacity:.45}
 .dm-hero-num{transition:opacity .35s var(--ease)}
-.dm-await .dm-hero-num{opacity:.3}
+.dm-await .dm-hero-num{visibility:hidden}
 .dm-await .dm-draft{opacity:.35}
 .dm-await .dm-badge,.dm-await .dm-actions{visibility:hidden}
 .dm-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}

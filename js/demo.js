@@ -71,7 +71,7 @@
       short: 'Service follow-ups', agent: 'Service follow-up drafts', write: true,
       q: 'Draft follow-ups for service work customers declined last week.',
       unit: 'drafts held at the door',
-      sub: function () { return '3 drafts waiting for Dana (Service Director) to approve. Nothing has been sent.'; },
+      sub: function () { return '3 drafts waiting for Dana Brooks (Fixed-ops director) to approve. Nothing has been sent.'; },
       fetch: function (p) { return { call: 'service.declined_work', args: '(since=last_week, stores=' + scope(p) + ')', rows: (all(p) ? 23 : 6) + ' rows', ms: all(p) ? 48 : 19 }; },
       def: 'customers who opted out are never drafted',
       gloss: 'Declined work, minus customers who opted out.'
@@ -383,7 +383,7 @@
         line(['k', 'def '], ['', q.def])
       ], q.gloss);
       if (q.write) {
-        setStage(2, [line(['b', 'held '], ['', 'contact_customer → dana.brooks']), line(['k', 'sent '], ['', '0'])], 'Waits for Dana (Service Director).');
+        setStage(2, [line(['b', 'held '], ['', 'contact_customer → dana.brooks']), line(['k', 'sent '], ['', '0'])], 'Waits for Dana Brooks (Fixed-ops director).');
       } else {
         setStage(2, [line(['k', 'changes '], ['', 'none · read-only'])], 'Nothing to approve.');
       }
@@ -393,7 +393,7 @@
     }
 
     function setSlots(p) {
-      var step = 120 * S.speed;
+      var step = 50 * S.speed;
       slotEls.forEach(function (li, i) {
         var ok = sees(p, i);
         li.style.transitionDelay = S.instant ? '0ms' : Math.round(i * step) + 'ms';
@@ -401,7 +401,7 @@
         li.classList.toggle('dm-slot--shut', !ok);
         li._sr.textContent = ok ? ', open' : ', shut';
       });
-      return wait(step * 5 + 450);
+      return wait(step * 5 + 200 * S.speed);
     }
     function setGate(state, text) { door.setAttribute('data-state', state); gateState.textContent = text; }
 
@@ -472,7 +472,7 @@
       var hero = h('div', 'dm-hero');
       var n = q.write ? 3 : sumVisible(q, p);
       var num = h('span', 'dm-hero-num');
-      var numTx = tx('0');
+      var numTx = tx(String(n));
       num.style.minWidth = String(n).length + 'ch';
       num.appendChild(numTx);
       var unit = h('span', 'dm-hero-unit');
@@ -499,7 +499,8 @@
         A.ans.classList.remove('dm-await');
       }
       typeIn(A.subTx, 800);
-      countTo(A.numTx, A.num, morph ? A.n : 0, n, 900, tok);
+      // Never count up from 0: start near the answer so a 0 is never on screen.
+      countTo(A.numTx, A.num, morph ? A.n : Math.max(1, Math.round(n * 0.6)), n, 600, tok);
       if (!q.write) A.detail.setRole(p);
       A.n = n; A.role = p.id; A.landed = true;
     }
@@ -609,7 +610,7 @@
       void root.offsetWidth; root.classList.toggle('dm-instant', S.instant);
       var story = auto && !S.started;
       S.started = true;
-      S.speed = story ? 1.5 : 0.7;
+      S.speed = story ? 1 : 0.7; // story run is about 3 s end to end; the answer lands when FETCHED ticks
       var p = PEOPLE[S.role], qi = S.q, q = Q[qi];
       var morph = !!(A && !q.write && A.q === qi && A.landed);
       var gone = function () { return tok !== S.token; };
@@ -625,7 +626,7 @@
       var pre = Promise.resolve();
       if (bubble.classList.contains('dm-hide')) {
         setAsker(p); qText.textContent = q.q;
-        pre = T(400).then(function () { bubble.classList.remove('dm-hide'); return T(500); });
+        pre = T(200).then(function () { bubble.classList.remove('dm-hide'); return T(200); });
       } else {
         pre = Promise.all([setAsker(p), swapText(qText, q.q)]);
       }
@@ -640,7 +641,7 @@
       pre.then(function () {
         if (gone()) throw 0;
         setGate('checking', 'Checking');
-        return pulse(qText, gate, 1000 * S.speed);
+        return pulse(qText, gate, 450 * S.speed);
       }).then(function () {
         if (gone()) throw 0;
         stState(0, 'active');
@@ -648,41 +649,36 @@
         return setSlots(p);
       }).then(function () {
         if (gone()) throw 0;
-        return T(200);
-      }).then(function () {
-        if (gone()) throw 0;
         stState(0, 'done');
         setGate('open', all(p) ? 'Open' : 'Northside');
-        return pulse(gate, stages[1].mark, 700 * S.speed);
+        return pulse(gate, stages[1].mark, 350 * S.speed);
       }).then(function () {
         if (gone()) throw 0;
         stState(1, 'active');
         reveal(1);
-        return T(900);
+        return T(400);
       }).then(function () {
         if (gone()) throw 0;
+        // FETCHED ticks: the answer fills now, not after the log step.
         stState(1, 'done');
+        return pulse(stages[1].mark, A.hero, 400 * S.speed, q.write ? 'brass' : '');
+      }).then(function () {
+        if (gone()) throw 0;
+        land(q, p, morph, tok);
         stState(2, 'active');
         reveal(2);
-        return T(450);
+        return T(250);
       }).then(function () {
         if (gone()) throw 0;
         if (q.write) { stState(2, 'held'); setGate('held', '3 held'); }
         else stState(2, 'done');
-        return T(450);
-      }).then(function () {
-        if (gone()) throw 0;
         stState(3, 'active');
         reveal(3);
-        return T(380);
+        return T(250);
       }).then(function () {
         if (gone()) throw 0;
         stState(3, 'done');
-        return pulse(stages[3].mark, A.hero, 1100 * S.speed, q.write ? 'brass' : '');
-      }).then(function () {
-        if (gone()) throw 0;
-        land(q, p, morph, tok);
-        return T(700);
+        return T(100);
       }).then(function () {
         if (gone()) throw 0;
         aA.setAttribute('aria-busy', 'false');

@@ -218,8 +218,7 @@
     root.setAttribute('data-mode', 'today');
 
     root.appendChild(h('div', 'ln-head',
-      '<div><p class="ln-kicker">One booked visit, two ways</p>' +
-      '<h3 class="ln-title">Agents do the work. <em>People decide.</em></h3></div>' +
+      '<div><h3 class="ln-title">One booked visit, <em>two ways.</em></h3></div>' +
       '<div class="ln-switch" role="group" aria-label="Show the visit">' +
       '<span class="ln-switch-thumb" aria-hidden="true"></span>' +
       '<button type="button" class="ln-switch-b" data-mode="today" aria-pressed="true">Today</button>' +
