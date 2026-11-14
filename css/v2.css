@@ -1,0 +1,245 @@
+/* RooftopLake v2 — photographic depth layers, scroll-scrubbed dive, and luminous closing band.
+   Uses tokens from tokens.css. New elements are namespaced with .v2-. */
+
+/* Allow position:sticky to work reliably while still preventing horizontal scroll on mobile */
+body {
+  overflow-x: clip;
+}
+
+/* Dim the fixed #lake-scene canvas slightly so it supports rather than competes with the new photographic backdrops */
+#lake-scene {
+  opacity: 0.52;
+}
+
+/* ===== Hero: dusk dealership reflected in the lake ===== */
+.v2-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.v2-hero::before {
+  display: none;
+}
+
+.v2-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.v2-hero-deep {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.v2-hero-dusk {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.v2-hero-dusk img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+  transform-origin: center 55%;
+  will-change: transform, opacity;
+}
+
+/* Contrast scrims: protect headline at top and lead/CTAs at bottom while keeping the glowing showroom reflection clear */
+.v2-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(3, 13, 18, 0.78) 0%,
+      rgba(3, 13, 18, 0.34) 30%,
+      rgba(3, 13, 18, 0.14) 52%,
+      rgba(3, 13, 18, 0.68) 80%,
+      rgba(5, 19, 26, 0.96) 100%);
+}
+
+/* Foreground light overlay moving faster on scroll */
+.v2-hero-light {
+  position: absolute;
+  inset: -12% 0;
+  background:
+    radial-gradient(65% 40% at 50% 18%, rgba(147, 233, 227, 0.12), transparent 70%),
+    linear-gradient(115deg, transparent 35%, rgba(95, 214, 208, 0.06) 50%, transparent 65%);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.v2-hero .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 720px) {
+  .v2-hero-dusk img {
+    object-position: center 44%;
+  }
+  .v2-hero-scrim {
+    background:
+      linear-gradient(180deg,
+        rgba(3, 13, 18, 0.84) 0%,
+        rgba(3, 13, 18, 0.42) 34%,
+        rgba(3, 13, 18, 0.25) 52%,
+        rgba(3, 13, 18, 0.78) 78%,
+        rgba(5, 19, 26, 0.98) 100%);
+  }
+}
+
+/* ===== Scroll-scrubbed Dive Interlude ===== */
+main > section.v2-dive {
+  padding: 0;
+  height: 220vh;
+  position: relative;
+  z-index: 2;
+}
+
+.v2-dive-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+}
+
+.v2-dive-poster,
+.v2-dive-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.v2-dive-canvas {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.v2-dive.is-ready .v2-dive-canvas {
+  opacity: 1;
+}
+
+.v2-dive-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(closest-side, rgba(3, 13, 18, 0.62), rgba(3, 13, 18, 0.36) 72%, rgba(5, 19, 26, 0.72)),
+    linear-gradient(180deg, rgba(5, 19, 26, 0.82) 0%, transparent 18%, transparent 82%, rgba(5, 19, 26, 0.88) 100%);
+  pointer-events: none;
+}
+
+.v2-dive-copy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  opacity: var(--dive-text-o, 0);
+  transform: translate3d(0, var(--dive-text-y, 18px), 0);
+  will-change: opacity, transform;
+}
+
+.v2-dive-line {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 4.4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-shadow: 0 2px 28px rgba(3, 13, 18, 0.85);
+  text-wrap: balance;
+}
+
+.v2-dive-line em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal);
+}
+
+@media (max-width: 720px) {
+  main > section.v2-dive {
+    height: 185vh;
+  }
+  .v2-dive-line {
+    font-size: clamp(24px, 7vw, 36px);
+  }
+}
+
+/* ===== Luminous Closing Band ===== */
+.v2-luminous {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.v2-luminous-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.v2-luminous-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.v2-luminous-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(5, 19, 26, 0.88) 0%,
+    rgba(5, 19, 26, 0.64) 38%,
+    rgba(5, 19, 26, 0.72) 72%,
+    rgba(3, 13, 18, 0.94) 100%);
+}
+
+.v2-luminous .lead {
+  color: #DCEAE9;
+  text-shadow: 0 1px 16px rgba(3, 13, 18, 0.8);
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .v2-hero-dusk img,
+  .v2-hero-light {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  main > section.v2-dive {
+    height: auto;
+    min-height: 68vh;
+  }
+  .v2-dive-sticky {
+    position: relative;
+    height: 68vh;
+    min-height: 420px;
+  }
+  .v2-dive-canvas {
+    display: none;
+  }
+  .v2-dive-copy {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
